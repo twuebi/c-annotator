@@ -1,5 +1,5 @@
 [package]
-name = "cdepth_annotator"
+name = "c_annotator"
 version = "0.1.0"
 authors = ["Tobias Pütz <tobias.puetz@uni-tuebingen.de>"]
 edition = "2018"

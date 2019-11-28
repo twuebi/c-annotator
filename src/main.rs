@@ -36,8 +36,11 @@ fn main() {
         let terminals = tree.terminals().collect::<Vec<NodeIndex<u32>>>();
         for terminal in terminals {
             let count = tree.path_iter(terminal).count();
+            let siblings = tree.siblings(terminal).count();
+            let (parent,_) = tree.parent(terminal).expect("Terminal without parent");
+            let parent_label = tree[parent].label().to_string();
             let node = tree.index_mut(terminal);
-            let feature = node.features().unwrap().to_string() + &format!("|cdepth:{}",count);
+            let feature = node.features().unwrap().to_string() + &format!("|cdepth:{}",count) + &format!("|csib:{}",siblings)+ &format!("|cpar:{}",parent_label);
             node.set_features(Some(Features::from(feature)));
         }
         let out_sent = tree.into();
